@@ -1,0 +1,29 @@
+{
+  "name": "@sensethenlove/svelte-turnstile",
+  "version": "1.0.2",
+  "description": "Helper functions & component to integrate svelte w/ an invisible cloudflare turnstile form validator",
+  "main": "./src/Turnstile.svelte",
+  "keywords": [
+    "array",
+    "utility"
+  ],
+  "author": "Sense Then Love",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^18.15.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.2"
+  },
+  "types": "./lib/index.d.ts",
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sensethenlove/loop-backwards.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sensethenlove/loop-backwards/issues"
+  },
+  "homepage": "https://github.com/sensethenlove/loop-backwards#readme"
+}
