@@ -1,6 +1,6 @@
 {
   "name": "@sensethenlove/svelte-turnstile",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Helper functions & component to integrate svelte w/ an invisible cloudflare turnstile form validator",
   "main": "./src/Turnstile.svelte",
   "keywords": [
