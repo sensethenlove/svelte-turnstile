@@ -1,5 +1,5 @@
-import { TurnstileTokenValidateResponse } from './types'
 import { CHALLENGE_URL, ERROR_MESSAGE } from './variables'
+import type { TurnstileTokenValidateResponse } from '$lib/index.d'
 
 
 export default async (turnstileResponse: FormDataEntryValue, secret: string) => {

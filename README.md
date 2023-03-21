@@ -11,7 +11,7 @@ pnpm add @sensethenlove/svelte-turnstile
 ```
 
 ### Prerequisites
-1. Svelte(kit) Typescript Project
+1. Svelte(kit) Project
 1. Cloudflare account
 1. From Cloudflare dashboard setup Turnstile
 
@@ -23,24 +23,21 @@ pnpm add @sensethenlove/svelte-turnstile
 ### Client side example
 ```svelte
 <script lang="ts">
-  import { onMount } from 'svelte' 
   import { PUBLIC_ENVIRONMENT } from '$env/static/public'
-  import Turnstile from '@sensethenlove/svelte-turnstile/src/Turnstile.svelte'
-  import { PUBLIC_KEY_ALWAYS_PASSES } from '@sensethenlove/svelte-turnstile/src/variables'
+  import { Turnstile, PUBLIC_KEY_ALWAYS_PASSES } from '@sensethenlove/svelte-turnstile'
 
   const PUBLIC_KEY = 'get-from-cloudflare-dashboard'
 </script>
 
 
-<Turnstile { onMount } sitekey={ PUBLIC_ENVIRONMENT === 'local' ? PUBLIC_KEY_ALWAYS_PASSES : PUBLIC_KEY } />
+<Turnstile sitekey={ PUBLIC_ENVIRONMENT === 'local' ? PUBLIC_KEY_ALWAYS_PASSES : PUBLIC_KEY } />
 ```
 
 ### Server side example
 ```ts
 import { PUBLIC_ENVIRONMENT } from '$env/static/public'
-import validate from '@sensethenlove/svelte-turnstile/src/validate'
 import { CLOUDFLARE_TURNSTILE_PRIVATE_KEY } from '$env/static/private'
-import { ERROR_MESSAGE, CLOUDFLARE_TURNSTILE_PRIVATE_KEY_ALWAYS_PASSES } from '@sensethenlove/svelte-turnstile/src/variables'
+import { validate, ERROR_MESSAGE, CLOUDFLARE_TURNSTILE_PRIVATE_KEY_ALWAYS_PASSES } from '@sensethenlove/svelte-turnstile'
 
 
 const fields = Object.fromEntries((await request.formData()).entries())

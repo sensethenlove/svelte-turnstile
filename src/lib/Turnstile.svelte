@@ -1,6 +1,7 @@
 <script lang="ts">
+  import { onMount } from 'svelte'
+
   let div: HTMLDivElement
-  export let onMount
   export let sitekey: string
 
   onMount(() => {

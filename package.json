@@ -1,23 +1,16 @@
 {
   "name": "@sensethenlove/svelte-turnstile",
-  "version": "1.0.3",
-  "description": "Helper functions & component to integrate svelte w/ an invisible cloudflare turnstile form validator",
-  "main": "./src/Turnstile.svelte",
-  "keywords": [
-    "array",
-    "utility"
-  ],
-  "author": "Sense Then Love",
   "license": "MIT",
-  "devDependencies": {
-    "@types/node": "^18.15.3",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.0.2"
-  },
-  "types": "./lib/index.d.ts",
-  "directories": {
-    "lib": "lib"
-  },
+  "type": "module",
+  "version": "1.0.4",
+  "author": "Sense Then Love",
+  "svelte": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "homepage": "https://github.com/sensethenlove/loop-backwards#readme",
+  "description": "Helper functions & component to integrate svelte w/ an invisible cloudflare turnstile form validator",
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sensethenlove/loop-backwards.git"
@@ -25,5 +18,39 @@
   "bugs": {
     "url": "https://github.com/sensethenlove/loop-backwards/issues"
   },
-  "homepage": "https://github.com/sensethenlove/loop-backwards#readme"
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "svelte": "./dist/index.js"
+    }
+  },
+  "keywords": [
+    "svelte",
+    "turnstile",
+    "typescript",
+    "cloudflare workers"
+  ],
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build && npm run package",
+    "preview": "vite preview",
+    "package": "svelte-kit sync && svelte-package && publint",
+    "prepublishOnly": "npm run package",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+  },
+  "peerDependencies": {
+    "svelte": "^3.54.0"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-auto": "^2.0.0",
+    "@sveltejs/kit": "^1.5.0",
+    "@sveltejs/package": "^2.0.0",
+    "publint": "^0.1.9",
+    "svelte": "^3.54.0",
+    "svelte-check": "^3.0.1",
+    "tslib": "^2.4.1",
+    "typescript": "^4.9.3",
+    "vite": "^4.0.0"
+  }
 }
