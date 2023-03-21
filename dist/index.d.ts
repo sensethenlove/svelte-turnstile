@@ -1,21 +1,21 @@
-declare global { // Node global types
-  interface Window { // Browser window types
-    turnstile: { // For Cloudflare Turnstile
-      render: (element: string | HTMLElement, options: TurnstileOptions) => string;
-      remove: (widgetId: string) => void;
+import validate from './validate';
+import Turnstile from './Turnstile.svelte';
+export { Turnstile, validate };
+export * from './variables';
+declare global {
+    interface Window {
+        turnstile: {
+            render: (element: string | HTMLElement, options: TurnstileOptions) => string;
+            remove: (widgetId: string) => void;
+        };
     }
-  }
 }
-
-
 interface TurnstileOptions {
-  sitekey: string;
+    sitekey: string;
 }
-
-
 export type TurnstileTokenValidateResponse = {
-  'error-codes': string[]
-  success: boolean
-  action: string
-  cdata: string
-}
+    'error-codes': string[];
+    success: boolean;
+    action: string;
+    cdata: string;
+};

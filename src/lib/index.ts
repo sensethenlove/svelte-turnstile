@@ -1,3 +1,11 @@
+import validate from './validate'
+import Turnstile from './Turnstile.svelte'
+
+
+export { Turnstile, validate }
+export * from './variables'
+
+
 declare global { // Node global types
   interface Window { // Browser window types
     turnstile: { // For Cloudflare Turnstile
