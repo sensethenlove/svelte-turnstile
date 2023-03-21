@@ -2,7 +2,7 @@
   "name": "@sensethenlove/svelte-turnstile",
   "license": "MIT",
   "type": "module",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "author": "Sense Then Love",
   "svelte": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -26,8 +26,10 @@
   },
   "keywords": [
     "svelte",
+    "sveltekit",
     "turnstile",
     "typescript",
+    "cloudflare",
     "cloudflare workers"
   ],
   "scripts": {
