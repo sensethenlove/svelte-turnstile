@@ -33,6 +33,7 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build && npm run package",
+    "deploy": "npm publish --access public",
     "preview": "vite preview",
     "package": "svelte-kit sync && svelte-package && publint",
     "prepublishOnly": "npm run package",
