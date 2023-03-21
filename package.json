@@ -1,8 +1,8 @@
 {
   "name": "@sensethenlove/svelte-turnstile",
+  "version": "1.0.7",
   "license": "MIT",
   "type": "module",
-  "version": "1.0.6",
   "author": "Sense Then Love",
   "svelte": "./dist/index.js",
   "types": "./dist/index.d.ts",
