@@ -1,9 +1,9 @@
 {
   "name": "@sensethenlove/svelte-turnstile",
-  "version": "1.0.7",
+  "version": "1.0.8",
+  "author": "Sense Then Love",
   "license": "MIT",
   "type": "module",
-  "author": "Sense Then Love",
   "svelte": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "homepage": "https://github.com/sensethenlove/loop-backwards#readme",
@@ -34,13 +34,9 @@
   ],
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build && npm run package",
-    "npmDeploy": "npm publish --access public",
-    "preview": "vite preview",
+    "live": "pnpm check && pnpm package && npm publish --access public",
     "package": "svelte-kit sync && svelte-package && publint",
-    "prepublishOnly": "npm run package",
-    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json"
   },
   "peerDependencies": {
     "svelte": "^3.54.0"

@@ -1,25 +1,20 @@
-# 🙏 @sensethenlove/svelte-turnstile
+# 🕉 @sensethenlove/svelte-turnstile
 
 
-### 🕉 Description
+### 🙏 Description
 Helper functions & component to integrate svelte w/ an invisible cloudflare turnstile form validator
 
-### ☯️ Prerequisites
-1. Svelte(kit) Project
-1. Cloudflare account
-1. From Cloudflare dashboard setup Turnstile
-
-### 💞 Install
+### ☯️ Install
 ```bash
 pnpm add @sensethenlove/svelte-turnstile
 ```
 
-### 🧡 Instructions
+### 💛 Instructions
 1. From Cloudflare dashboard find Secret key
 1. Add Secret key to `.env` file (CLOUDFLARE_TURNSTILE_PRIVATE_KEY)
 1. In `app.html` add turnstile script
 
-### 💛 Client side example
+### 🧡 Example: Client side
 ```svelte
 <script lang="ts">
   import { PUBLIC_ENVIRONMENT } from '$env/static/public'
@@ -32,7 +27,7 @@ pnpm add @sensethenlove/svelte-turnstile
 <Turnstile sitekey={ PUBLIC_ENVIRONMENT === 'local' ? PUBLIC_KEY_ALWAYS_PASSES : PUBLIC_KEY } />
 ```
 
-### 💙 Server side example
+### 💙 Example: Server side
 ```ts
 import { PUBLIC_ENVIRONMENT } from '$env/static/public'
 import { CLOUDFLARE_TURNSTILE_PRIVATE_KEY } from '$env/static/private'
@@ -47,6 +42,7 @@ else await validate(fields['cf-turnstile-response'], secret)
 ```
 
 ### 💖 Our helpful packages!
+* [@sensethenlove/jwt](https://www.npmjs.com/package/@sensethenlove/jwt)
 * [@sensethenlove/toast](https://www.npmjs.com/package/@sensethenlove/toast)
 * [@sensethenlove/env-write](https://www.npmjs.com/package/@sensethenlove/env-write)
 * [@sensethenlove/global-style](https://www.npmjs.com/package/@sensethenlove/global-style)
