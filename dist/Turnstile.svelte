@@ -1,10 +1,29 @@
-<script>import { onMount } from "svelte";
-let div;
+<script>import { onMount, createEventDispatcher } from "svelte";
 export let sitekey;
+let div;
+const dispatch = createEventDispatcher();
 onMount(() => {
-  const id = window.turnstile.render(div, { sitekey });
+  let id;
+  window.turnstile.ready(() => {
+    id = window.turnstile.render(div, {
+      sitekey,
+      callback() {
+        dispatch("state", { status: "success", message: "All good!" });
+      },
+      "error-callback"() {
+        dispatch("state", { status: "error", message: "Network error" });
+      },
+      "expired-callback"() {
+        dispatch("state", { status: "expired", message: "Token expired" });
+      },
+      "timeout-callback"() {
+        dispatch("state", { status: "timeout", message: "Challenge expired" });
+      }
+    });
+  });
   return () => {
-    window.turnstile.remove(id);
+    if (id)
+      window.turnstile.remove(id);
   };
 });
 </script>

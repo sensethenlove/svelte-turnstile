@@ -4,6 +4,8 @@ declare const __propDef: {
         sitekey: string;
     };
     events: {
+        state: CustomEvent<any>;
+    } & {
         [evt: string]: CustomEvent<any>;
     };
     slots: {};

@@ -1,14 +1,34 @@
 <script lang="ts">
-  import { onMount } from 'svelte'
+  import { onMount, createEventDispatcher } from 'svelte'
 
-  let div: HTMLDivElement
   export let sitekey: string
 
+  let div: HTMLDivElement
+  const dispatch = createEventDispatcher()
+
   onMount(() => {
-    const id = window.turnstile.render(div, { sitekey })
+    let id: string
+
+    window.turnstile.ready(() => {
+      id = window.turnstile.render(div, {
+        sitekey,
+        callback () {
+          dispatch('state', { status: 'success', message: 'All good!' })
+        },
+        'error-callback' () {
+          dispatch('state', { status: 'error', message: 'Network error' })
+        },
+        'expired-callback' () {
+          dispatch('state', { status: 'expired', message: 'Token expired' })
+        },
+        'timeout-callback' () {
+          dispatch('state', { status: 'timeout', message: 'Challenge expired' })
+        },
+      })
+    })
 
     return () => { // on unmount
-      window.turnstile.remove(id)
+      if (id) window.turnstile.remove(id)
     }
   })
 </script>

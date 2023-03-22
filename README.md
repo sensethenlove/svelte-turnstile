@@ -2,7 +2,7 @@
 
 
 ### 🙏 Description
-Helper functions & component to integrate svelte w/ an invisible cloudflare turnstile form validator
+Helper functions & component to integrate Svelte w/ an invisible Cloudflare Turnstile form validator
 
 ### ☯️ Install
 ```bash
@@ -10,35 +10,47 @@ pnpm add @sensethenlove/svelte-turnstile
 ```
 
 ### 💛 Instructions
-1. From Cloudflare dashboard find Secret key
+1. Get Cloudflare account & in dashboard setup Turnstile
+1. From Turnstile dashboard find Secret key
 1. Add Secret key to `.env` file (CLOUDFLARE_TURNSTILE_PRIVATE_KEY)
-1. In `app.html` add turnstile script
+
+### Add turnstile script to app.html
+```html
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"></script>
+```
 
 ### 🧡 Example: Client side
+* If wondering how PUBLIC_ENVIRONMENT is set => [@sensethenlove/toast](https://www.npmjs.com/package/@sensethenlove/toast)
+* If wondering where showToast comes from => [@sensethenlove/env-write](https://www.npmjs.com/package/@sensethenlove/env-write)
 ```svelte
 <script lang="ts">
+  import showToast from '@sensethenlove/toast'
   import { PUBLIC_ENVIRONMENT } from '$env/static/public'
   import { Turnstile, PUBLIC_KEY_ALWAYS_PASSES } from '@sensethenlove/svelte-turnstile'
 
-  const PUBLIC_KEY = 'get-from-cloudflare-dashboard'
+  const PUBLIC_KEY = 'get-from-cloudflare-turnstile-dashboard'
+
+  function getTurnstileState (e: CustomEvent) {
+    if (e.detail.status === 'success') isLoading = false // status options => [ 'success', 'error', 'expired', 'timeout' ]
+    else showToast({ type: 'info', items: [ e.detail.message ] })
+  }
 </script>
 
 
-<Turnstile sitekey={ PUBLIC_ENVIRONMENT === 'local' ? PUBLIC_KEY_ALWAYS_PASSES : PUBLIC_KEY } />
+<Turnstile on:state={ getTurnstileState } sitekey={ PUBLIC_ENVIRONMENT === 'local' ? PUBLIC_KEY_ALWAYS_PASSES : PUBLIC_KEY } />
 ```
 
 ### 💙 Example: Server side
+* If wondering how PUBLIC_ENVIRONMENT is set => [@sensethenlove/env-write](https://www.npmjs.com/package/@sensethenlove/env-write)
 ```ts
 import { PUBLIC_ENVIRONMENT } from '$env/static/public'
 import { CLOUDFLARE_TURNSTILE_PRIVATE_KEY } from '$env/static/private'
-import { validate, ERROR_MESSAGE, CLOUDFLARE_TURNSTILE_PRIVATE_KEY_ALWAYS_PASSES } from '@sensethenlove/svelte-turnstile'
-
+import { validate, CLOUDFLARE_TURNSTILE_PRIVATE_KEY_ALWAYS_PASSES } from '@sensethenlove/svelte-turnstile'
 
 const fields = Object.fromEntries((await request.formData()).entries())
 const secret = (PUBLIC_ENVIRONMENT === 'local') ? CLOUDFLARE_TURNSTILE_PRIVATE_KEY_ALWAYS_PASSES : CLOUDFLARE_TURNSTILE_PRIVATE_KEY
 
-if (!fields['cf-turnstile-response']) throw new Error(ERROR_MESSAGE)
-else await validate(fields['cf-turnstile-response'], secret)
+await validate(fields['cf-turnstile-response'], secret)
 ```
 
 ### 💖 Our helpful packages!

@@ -7,11 +7,16 @@ declare global {
         turnstile: {
             render: (element: string | HTMLElement, options: TurnstileOptions) => string;
             remove: (widgetId: string) => void;
+            ready: any;
         };
     }
 }
 interface TurnstileOptions {
     sitekey: string;
+    callback: (token: string) => void;
+    'error-callback': () => void;
+    'expired-callback': () => void;
+    'timeout-callback': () => void;
 }
 export type TurnstileTokenValidateResponse = {
     'error-codes': string[];

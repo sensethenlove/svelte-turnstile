@@ -11,6 +11,7 @@ declare global { // Node global types
     turnstile: { // For Cloudflare Turnstile
       render: (element: string | HTMLElement, options: TurnstileOptions) => string;
       remove: (widgetId: string) => void;
+      ready: any
     }
   }
 }
@@ -18,6 +19,10 @@ declare global { // Node global types
 
 interface TurnstileOptions {
   sitekey: string;
+  callback: (token: string) => void;
+  'error-callback': () => void;
+  'expired-callback': () => void;
+  'timeout-callback': () => void;
 }
 
 
