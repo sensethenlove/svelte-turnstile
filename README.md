@@ -53,6 +53,18 @@ const secret = (PUBLIC_ENVIRONMENT === 'local') ? CLOUDFLARE_TURNSTILE_PRIVATE_K
 await validate(fields['cf-turnstile-response'], secret)
 ```
 
+### 💚 Server Side Error Handling
+* `SvelteTurnstileError` extends `Error`
+```ts
+import { SvelteTurnstileError } from '@sensethenlove/svelte-turnstile'
+
+try {
+  // server side code
+} catch (e) {
+  if (e instanceof SvelteTurnstileError) console.log('foo')
+}
+```
+
 ### 💖 Our helpful packages!
 * [@sensethenlove/jwt](https://www.npmjs.com/package/@sensethenlove/jwt)
 * [@sensethenlove/slug](https://www.npmjs.com/package/@sensethenlove/slug)
